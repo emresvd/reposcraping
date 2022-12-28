@@ -37,13 +37,13 @@ class RepoScraping(object):
                     if url not in self.file_urls:
                         self.file_urls.append(url)
 
-    def clone_files(self, path: str, fiter: str = None):
+    def clone_files(self, path: str, filter_extension: str = None):
         if not os.path.isdir(path):
             os.mkdir(path)
 
         status = []
 
-        for url in self.urls:
+        for url in self.file_urls:
             url = (
                 url
                 .replace("github.com", "raw.githubusercontent.com")
@@ -56,8 +56,8 @@ class RepoScraping(object):
             if os.path.isfile(path):
                 continue
 
-            if filter:
-                if not file_name.endswith(filter):
+            if filter_extension:
+                if not file_name.endswith(filter_extension):
                     continue
 
             try:
