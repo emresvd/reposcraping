@@ -38,7 +38,7 @@ class RepoScraping(object):
                     if url not in self.file_urls:
                         self.file_urls.append(url)
 
-    def clone_files(self, path: str):
+    def clone_files(self, path: str, fiter: str = None):
         if not os.path.isdir(path):
             os.mkdir(path)
 
@@ -52,7 +52,16 @@ class RepoScraping(object):
             file_name = url.split("/")[-1]
             path = os.path.join(path, file_name)
 
+            if filter:
+                if not file_name.endswith(filter):
+                    continue
+
             try:
                 urllib.request.urlretrieve(url, path)
             except urllib.error.HTTPError:
                 pass
+
+            if os.path.isfile(os.path.join(path, file_name)):
+                return False
+
+        return True
