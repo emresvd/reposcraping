@@ -37,7 +37,7 @@ class RepoScraping(object):
                     if url not in self.file_urls:
                         self.file_urls.append(url)
 
-    def clone_files(self, path: str, filter_extension: str = None):
+    def clone_files(self, path: str, filter_extension: str = None, only_file_name: bool = False):
         if not os.path.isdir(path):
             os.mkdir(path)
 
@@ -48,7 +48,11 @@ class RepoScraping(object):
                 .replace("blob/", "")
             )
 
-            file_name = url.split("/")[-1]
+            if only_file_name:
+                file_name = url.split("/")[-1]
+            else:
+                file_name = "_".join(url.split("/")[3:]).replace("_master", "")
+
             full_path = os.path.join(path, file_name)
 
             if os.path.isfile(full_path):
