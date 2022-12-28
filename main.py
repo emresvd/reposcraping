@@ -8,7 +8,7 @@ repo_url = sys.argv[-1]
 r = requests.get(repo_url)
 soup = BeautifulSoup(r.content, 'html.parser')
 
-# print(soup.prettify())
+search_later_urls = []
 
 for i in soup.find_all('a'):
     if "blob/master" in i.get('href'):
@@ -18,3 +18,7 @@ for i in soup.find_all('a'):
             .replace("blob/", "")
         )
         print(url)
+    if "tree/master" in i.get('href'):
+        search_later_urls.append(urljoin(repo_url, i.get('href')))
+
+print(search_later_urls)
