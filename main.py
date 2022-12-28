@@ -19,6 +19,8 @@ for i in tree_urls:
             if url not in tree_urls:
                 tree_urls.append(url)
 
+urls = []
+
 for tree_url in tree_urls:
     r = requests.get(tree_url)
     soup = BeautifulSoup(r.content, 'html.parser')
@@ -30,4 +32,8 @@ for tree_url in tree_urls:
                 .replace("github.com", "raw.githubusercontent.com")
                 .replace("blob/", "")
             )
-            print(url)
+            urls.append(url)
+
+if __name__ == "__main__":
+    with open("urls.txt", "w") as f:
+        f.write("\n".join(urls))
