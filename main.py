@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import sys
 from urllib.parse import urljoin
+import urllib.request
+import urllib.error
+import os
 
 repo_url = sys.argv[-1]
 
@@ -10,6 +13,7 @@ soup = BeautifulSoup(r.content, 'html.parser')
 
 tree_urls = [repo_url]
 
+# get tree urls
 for i in tree_urls:
     r = requests.get(i)
     soup = BeautifulSoup(r.content, 'html.parser')
@@ -21,20 +25,35 @@ for i in tree_urls:
 
 urls = []
 
+# get file urls
 for tree_url in tree_urls:
     r = requests.get(tree_url)
     soup = BeautifulSoup(r.content, 'html.parser')
 
     for i in soup.find_all('a'):
         if "blob/master" in i.get('href'):
-            url = (
-                urljoin(repo_url, i.get('href'))
-                .replace("github.com", "raw.githubusercontent.com")
-                .replace("blob/", "")
-            )
+            url = urljoin(repo_url, i.get('href'))
             if url not in urls:
                 urls.append(url)
 
-if __name__ == "__main__":
-    with open("urls.txt", "w") as f:
-        f.write("\n".join(urls))
+with open("urls.txt", "w") as f:
+    f.write("\n".join(urls))
+
+if not os.path.isdir("files"):
+    os.mkdir("files")
+
+# clone files
+for url in urls:
+    url = (
+        url
+        .replace("github.com", "raw.githubusercontent.com")
+        .replace("blob/", "")
+    )
+
+    file_name = url.split("/")[-1]
+    path = "files/"+file_name
+
+    try:
+        urllib.request.urlretrieve(url, path)
+    except urllib.error.HTTPError:
+        pass
