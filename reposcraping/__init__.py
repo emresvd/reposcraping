@@ -42,6 +42,8 @@ class RepoScraping(object):
         if not os.path.isdir(path):
             os.mkdir(path)
 
+        status = []
+
         for url in self.urls:
             url = (
                 url
@@ -61,7 +63,6 @@ class RepoScraping(object):
             except urllib.error.HTTPError:
                 pass
 
-            if os.path.isfile(os.path.join(path, file_name)):
-                return False
+            status.append(os.path.isfile(os.path.join(path, file_name)))
 
-        return True
+        return not (False in status)
