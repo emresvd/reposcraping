@@ -37,3 +37,22 @@ class RepoScraping(object):
                     url = urljoin(self.repo_url, i.get('href'))
                     if url not in self.file_urls:
                         self.file_urls.append(url)
+
+    def clone_files(self, path: str):
+        if not os.path.isdir(path):
+            os.mkdir(path)
+
+        for url in self.urls:
+            url = (
+                url
+                .replace("github.com", "raw.githubusercontent.com")
+                .replace("blob/", "")
+            )
+
+            file_name = url.split("/")[-1]
+            path = os.path.join(path, file_name)
+
+            try:
+                urllib.request.urlretrieve(url, path)
+            except urllib.error.HTTPError:
+                pass
