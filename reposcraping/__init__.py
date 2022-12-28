@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import sys
 from urllib.parse import urljoin
 import urllib.request
 import urllib.error
@@ -53,6 +52,9 @@ class RepoScraping(object):
 
             file_name = url.split("/")[-1]
             path = os.path.join(path, file_name)
+
+            if os.path.isfile(path):
+                continue
 
             if filter:
                 if not file_name.endswith(filter):
