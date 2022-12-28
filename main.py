@@ -32,7 +32,8 @@ for tree_url in tree_urls:
                 .replace("github.com", "raw.githubusercontent.com")
                 .replace("blob/", "")
             )
-            urls.append(url)
+            if url not in urls:
+                urls.append(url)
 
 if __name__ == "__main__":
     with open("urls.txt", "w") as f:
