@@ -7,7 +7,7 @@ RepoScraping = __import__("reposcraping").RepoScraping
 
 
 class Cloner(object):
-    def __init__(self, scraping) -> None:
+    def __init__(self, scraping: RepoScraping) -> None:
         self.path: str = None
         self.filter_extension: str = None
         self.only_file_name: bool = False
