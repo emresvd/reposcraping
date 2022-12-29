@@ -6,8 +6,6 @@ scraping = reposcraping.RepoScraping("https://github.com/emresvd/random-video")
 print(scraping.tree_urls)
 print(scraping.file_urls)
 
-# scraping.clone_files("files", filter_extension=".py", only_file_name=True)
-
 clone = cloner.Cloner(scraping)
 clone.path = "files"
 clone.filter_extension = ".py"
