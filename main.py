@@ -1,13 +1,13 @@
-import reposcraping
-from reposcraping import cloner
+from reposcraping import RepoScraping
+from reposcraping.cloner import Cloner
 
-scraping = reposcraping.RepoScraping("https://github.com/emresvd/random-video")
+scraping = RepoScraping("https://github.com/emresvd/random-video")
 
 print(scraping.tree_urls)
 print(scraping.file_urls)
 
-clone = cloner.Cloner(scraping)
-clone.path = "files"
-clone.filter_extension = ".py"
-clone.only_file_name = True
-clone.clone()
+cloner = Cloner(scraping)
+cloner.path = "files"
+cloner.filter_extension = ".py"
+cloner.only_file_name = True
+cloner.clone()
