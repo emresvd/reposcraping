@@ -7,11 +7,11 @@ RepoScraping = __import__("reposcraping").RepoScraping
 
 
 class Cloner(object):
-    def __init__(self, RepoScraping) -> None:
+    def __init__(self, scraping) -> None:
         self.path: str = None
         self.filter_extension: str = None
         self.only_file_name: bool = False
-        self.scraping: RepoScraping = RepoScraping
+        self.scraping: RepoScraping = scraping
 
     def clone(self) -> None:
         if not self.path:
