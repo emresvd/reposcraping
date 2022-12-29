@@ -10,4 +10,4 @@ cloner = Cloner(scraping)
 cloner.path = "files"
 cloner.filter_extension = ".py"
 cloner.only_file_name = True
-cloner.clone()
+cloner.clone(p=True)

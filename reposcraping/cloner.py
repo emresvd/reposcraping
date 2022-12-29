@@ -13,7 +13,7 @@ class Cloner(object):
         self.only_file_name: bool = False
         self.scraping: RepoScraping = scraping
 
-    def clone(self) -> None:
+    def clone(self, p: bool = False) -> None:
         if not self.path:
             return
 
@@ -42,6 +42,8 @@ class Cloner(object):
                     continue
 
             try:
+                if p:
+                    print(full_path)
                 urllib.request.urlretrieve(url, full_path)
             except urllib.error.HTTPError:
                 pass
