@@ -36,9 +36,12 @@ class RepoScraping(object):
             soup = BeautifulSoup(r.content, 'html.parser')
 
             for i in soup.find_all('a'):
-                if "blob/master" in i.get('href'):
-                    url = urljoin(self.repo_url, i.get('href'))
-                    if url not in self.file_urls:
-                        self.file_urls.append(url)
-                        if self.p:
-                            print(url)
+                try:
+                    if "blob/master" in i.get('href'):
+                        url = urljoin(self.repo_url, i.get('href'))
+                        if url not in self.file_urls:
+                            self.file_urls.append(url)
+                            if self.p:
+                                print(url)
+                except TypeError:
+                    pass
