@@ -5,7 +5,11 @@ setup(
     version='0.0.1',
     description='Scraping GitHub repository',
     author='emresvd',
-    packages=find_packages(),
+    packages=find_packages(
+        exclude=[
+            'files',
+        ],
+    ),
     install_requires=[
         'beautifulsoup4==4.11.1',
         'requests==2.28.1',
