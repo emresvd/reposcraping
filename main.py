@@ -15,7 +15,6 @@ if sys.argv[-1] == "main.py":
     cloner.only_file_name = True
     cloner.clone(p=True)
 
-
 if sys.argv[-1] == "clean":
     import shutil
     for i in ["build", "dist", "reposcraping.egg-info"]:
