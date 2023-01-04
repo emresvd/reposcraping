@@ -19,10 +19,13 @@ class RepoScraping(object):
             soup = BeautifulSoup(r.content, 'html.parser')
 
             for j in soup.find_all('a'):
-                if "tree/master" in j.get('href'):
-                    url = urljoin(self.repo_url, j.get('href'))
-                    if url not in self.tree_urls:
-                        self.tree_urls.append(url)
+                try:
+                    if "tree/master" in j.get('href'):
+                        url = urljoin(self.repo_url, j.get('href'))
+                        if url not in self.tree_urls:
+                            self.tree_urls.append(url)
+                except TypeError:
+                    pass
 
     def __prepare_file_urls(self) -> None:
         for tree_url in self.tree_urls:
