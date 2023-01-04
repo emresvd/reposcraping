@@ -1,4 +1,7 @@
 # reposcraping
+### Scraping GitHub repository
+### This library allows you to access the names of files and folders of any github repository.
+### Cloner class allows you to clone the file types you want to the path you want. 
 ## setup
 ```bash
 pip3 install reposcraping
