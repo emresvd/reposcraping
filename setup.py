@@ -1,9 +1,14 @@
 from setuptools import setup, find_packages
+import codecs
+
+with codecs.open("README.md", "r", "utf-8") as f:
+    long_description = f.read()
 
 setup(
     name='reposcraping',
     version='0.0.1',
     description='Scraping GitHub repository',
+    long_description=long_description,
     author='emresvd',
     packages=find_packages(
         exclude=[
