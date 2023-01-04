@@ -4,8 +4,9 @@ from urllib.parse import urljoin
 
 
 class RepoScraping(object):
-    def __init__(self, repo_url: str) -> None:
+    def __init__(self, repo_url: str, p: bool = False) -> None:
         self.repo_url = repo_url
+        self.p = p
 
         self.tree_urls = [self.repo_url]
         self.file_urls = []
@@ -24,6 +25,8 @@ class RepoScraping(object):
                         url = urljoin(self.repo_url, j.get('href'))
                         if url not in self.tree_urls:
                             self.tree_urls.append(url)
+                            if self.p:
+                                print(url)
                 except TypeError:
                     pass
 
@@ -37,3 +40,5 @@ class RepoScraping(object):
                     url = urljoin(self.repo_url, i.get('href'))
                     if url not in self.file_urls:
                         self.file_urls.append(url)
+                        if self.p:
+                            print(url)
