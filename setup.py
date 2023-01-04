@@ -9,6 +9,7 @@ setup(
     version='0.0.2',
     description='Scraping GitHub repository',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author='emresvd',
     packages=find_packages(
         exclude=[
