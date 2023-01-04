@@ -6,11 +6,13 @@ with codecs.open("README.md", "r", "utf-8") as f:
 
 setup(
     name='reposcraping',
-    version='1.0.0',
+    version='1.0.1',
     description='Scraping GitHub repository',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='emresvd',
+    license='MIT',
+    url='https://github.com/emresvd/reposcraping',
     packages=find_packages(
         exclude=[
             'files',
@@ -27,10 +29,11 @@ setup(
         'clone',
     ],
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3.7',
+        'Topic :: Software Development :: Libraries :: Python Modules',
     ],
 )
