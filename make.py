@@ -8,3 +8,6 @@ if sys.argv[-1] == "clean":
 
 if sys.argv[-1] == "build":
     os.system("python setup.py sdist bdist_wheel")
+
+if sys.argv[-1] == "upload":
+    os.system("twine upload dist/*")
