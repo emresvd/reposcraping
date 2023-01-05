@@ -54,7 +54,7 @@ class RepoScraping(object):
                 except TypeError:
                     pass
 
-    def __load_data(self):
+    def __load_data(self) -> None:
         if os.path.isfile('tree_urls.pkl'):
             with open('tree_urls.pkl', 'rb') as f:
                 self.tree_urls = pickle.load(f)
@@ -71,7 +71,7 @@ class RepoScraping(object):
         else:
             self.file_urls = []
 
-    def __remove_cache(self):
+    def __remove_cache(self) -> None:
         if self.save:
             os.remove('tree_urls.pkl')
             os.remove('file_urls.pkl')
