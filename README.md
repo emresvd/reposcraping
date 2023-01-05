@@ -1,7 +1,6 @@
 # [reposcraping](https://pypi.org/project/reposcraping/)
 ### Scraping GitHub repository
-This library allows you to access the names of files and folders of any GitHub repository.<br>
-Cloner class allows you to clone the file types you want to the path you want.<br>
+This library allows you to access the names of files and folders of any GitHub repository. Cloner class allows you to clone the file types you want to the path you want.<br>
 ## setup
 ```bash
 pip install reposcraping
