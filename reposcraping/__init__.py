@@ -10,9 +10,11 @@ class RepoScraping(object):
         self.repo_url = repo_url
         self.p = p
         self.save = save
+        self.__start_prepare_file_urls = False
 
         self.__load_data()
-        self.__prepare_tree_urls()
+        if not self.__start_prepare_file_urls:
+            self.__prepare_tree_urls()
         self.__prepare_file_urls()
         self.__remove_cache()
 
@@ -64,6 +66,7 @@ class RepoScraping(object):
             self.tree_urls = [self.repo_url]
 
         if os.path.isfile('file_urls.pkl'):
+            self.__start_prepare_file_urls = True
             with open('file_urls.pkl', 'rb') as f:
                 self.file_urls = pickle.load(f)
             if self.p:
