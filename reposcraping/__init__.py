@@ -6,13 +6,7 @@ import os
 
 
 class RepoScraping(object):
-    def __init__(
-        self,
-        repo_url: str,
-        p: bool = False,
-        save: bool = False
-    ) -> None:
-
+    def __init__(self, repo_url: str, p: bool = False, save: bool = False) -> None:
         self.repo_url = repo_url
         self.p = p
         self.save = save
