@@ -6,7 +6,13 @@ import os
 
 
 class RepoScraping(object):
-    def __init__(self, repo_url: str, p: bool = False, save: bool = False) -> None:
+    def __init__(
+        self,
+        repo_url: str,
+        p: bool = False,
+        save: bool = False
+    ) -> None:
+
         self.repo_url = repo_url
         self.p = p
         self.save = save
@@ -73,5 +79,8 @@ class RepoScraping(object):
 
     def __remove_cache(self) -> None:
         if self.save:
-            os.remove('tree_urls.pkl')
-            os.remove('file_urls.pkl')
+            for i in ["tree_urls.pkl", "file_urls.pkl"]:
+                try:
+                    os.remove(i)
+                except FileNotFoundError:
+                    continue
