@@ -18,7 +18,10 @@ if sys.argv[-1] == "main.py":
 if sys.argv[-1] == "clean":
     import shutil
     for i in ["build", "dist", "reposcraping.egg-info", "files"]:
-        shutil.rmtree(i)
+        try:
+            shutil.rmtree(i)
+        except FileNotFoundError:
+            pass
 
 if sys.argv[-1] == "build":
     import os
