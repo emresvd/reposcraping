@@ -13,7 +13,7 @@ class Cloner(object):
     def clone(
         self,
         paths: dict,
-        only_file_name: False,
+        only_file_name: bool = False,
         p: bool = False
     ) -> None:
 
