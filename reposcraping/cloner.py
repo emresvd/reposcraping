@@ -8,17 +8,20 @@ RepoScraping = __import__("reposcraping").RepoScraping
 
 class Cloner(object):
     def __init__(self, scraping: RepoScraping) -> None:
-        self.path: str = None
-        self.filter_extension: str = None
-        self.only_file_name: bool = False
         self.scraping: RepoScraping = scraping
 
-    def clone(self, p: bool = False) -> None:
-        if not self.path:
-            return
+    def clone(
+        self,
+        paths: dict,
+        only_file_name: False,
+        default_path: str = None,
+        p: bool = False
+    ) -> None:
 
-        if not os.path.isdir(self.path):
-            os.mkdir(self.path)
+        for i in paths:
+            path = paths[i]
+            if not os.path.isdir(path):
+                os.makedirs(path, exist_ok=True)
 
         for url in self.scraping.file_urls:
             url = (
@@ -27,19 +30,21 @@ class Cloner(object):
                 .replace("blob/", "")
             )
 
-            if self.only_file_name:
+            if only_file_name:
                 file_name = url.split("/")[-1]
             else:
                 file_name = "_".join(url.split("/")[3:]).replace("_master", "")
 
-            full_path = os.path.join(self.path, file_name)
+            path = self.__get_path_by_extension(paths, file_name)
+            if not path:
+                if not default_path:
+                    continue
+                path = default_path
+
+            full_path = os.path.join(path, file_name)
 
             if os.path.isfile(full_path):
                 continue
-
-            if self.filter_extension:
-                if not file_name.endswith(self.filter_extension):
-                    continue
 
             try:
                 if p:
@@ -47,3 +52,10 @@ class Cloner(object):
                 urllib.request.urlretrieve(url, full_path)
             except urllib.error.HTTPError:
                 pass
+
+    def __get_path_by_extension(self, paths: dict, file_name: str) -> str:
+        if paths:
+            for i in paths:
+                if file_name.endswith(i):
+                    return paths[i]
+        return None

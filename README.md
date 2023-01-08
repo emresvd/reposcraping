@@ -10,16 +10,25 @@ pip install reposcraping
 from reposcraping import RepoScraping
 from reposcraping.cloner import Cloner
 
-scraping = RepoScraping("https://github.com/emresvd/random-video")
+scraping = RepoScraping(
+    "https://github.com/emresvd/random-video",
+    p=True,
+)
 
 print(scraping.tree_urls)
 print(scraping.file_urls)
 
 cloner = Cloner(scraping)
-cloner.path = "files"
-cloner.filter_extension = ".py"
-cloner.only_file_name = True
-cloner.clone(p=True)
+cloner.clone(
+    paths={
+        ".py": "files/python_files",
+        ".txt": "files/text_files",
+        ".md": "files/markdown_files",
+        ".html": "files/html_files",
+    },
+    only_file_name=True,
+    p=True,
+)
 ```
 ## output
 ```python

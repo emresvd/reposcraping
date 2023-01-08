@@ -6,7 +6,7 @@ with codecs.open("README.md", "r", "utf-8") as f:
 
 setup(
     name='reposcraping',
-    version='1.0.8',
+    version='1.0.9',
     description='Scraping GitHub repository',
     long_description=long_description,
     long_description_content_type='text/markdown',
