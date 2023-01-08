@@ -19,6 +19,7 @@ if sys.argv[-1] == "main.py":
             ".txt": "files/text_files",
             ".md": "files/markdown_files",
             ".html": "files/html_files",
+            "": "files/other_files",
         },
         only_file_name=True,
         p=True,
