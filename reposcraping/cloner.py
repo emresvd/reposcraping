@@ -14,7 +14,6 @@ class Cloner(object):
         self,
         paths: dict,
         only_file_name: False,
-        default_path: str = None,
         p: bool = False
     ) -> None:
 
@@ -37,9 +36,7 @@ class Cloner(object):
 
             path = self.__get_path_by_extension(paths, file_name)
             if not path:
-                if not default_path:
-                    continue
-                path = default_path
+                continue
 
             full_path = os.path.join(path, file_name)
 
