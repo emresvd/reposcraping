@@ -10,13 +10,10 @@ class Cloner(object):
     def __init__(self, scraping: RepoScraping) -> None:
         self.scraping: RepoScraping = scraping
 
-    def clone(
-        self,
-        paths: dict,
-        only_file_name: bool = False,
-        p: bool = False
-    ) -> None:
+    def __str__(self) -> str:
+        return f"Cloner(scraping={self.scraping})"
 
+    def clone(self, paths: dict, only_file_name: bool = False, p: bool = False) -> None:
         for i in paths:
             path = paths[i]
             if not os.path.isdir(path):

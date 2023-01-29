@@ -14,6 +14,9 @@ class RepoScraping(object):
         self.__prepare_tree_urls()
         self.__prepare_file_urls()
 
+    def __str__(self) -> str:
+        return f"RepoScraping(repo_url={self.repo_url}, p={self.p})"
+
     def __prepare_tree_urls(self) -> None:
         for i in self.tree_urls:
             r = requests.get(i)
