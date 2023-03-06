@@ -1,6 +1,10 @@
 from reposcraping import RepoScraping
 from reposcraping.cloner import Cloner
 import os
+import shutil
+
+if os.path.isdir("files"):
+    shutil.rmtree("files")
 
 scraping = RepoScraping(
     "https://github.com/emresvd/random-video",
@@ -81,32 +85,31 @@ cloner.clone(
 )
 
 print("\nlooking for files")
-print(os.listdir("files"))
-assert os.listdir("files") == [
+assert set(os.listdir("files")) == set([
     'html_files',
     'markdown_files',
     'other_files',
     'python_files',
     'text_files'
-]
+])
 print("✓ files found")
 
 print("\nlooking for html files")
-assert os.listdir("files/html_files") == [
+assert set(os.listdir("files/html_files")) == set([
     'emresvd_random-video_templates_download.html',
     'emresvd_random-video_templates_index.html'
-]
+])
 print("✓ html files found")
 
 print("\nlooking for markdown files")
-assert os.listdir("files/markdown_files") == [
+assert set(os.listdir("files/markdown_files")) == set([
     'emresvd_random-video_LICENSE.md',
     'emresvd_random-video_README.md'
-]
+])
 print("✓ markdown files found")
 
 print("\nlooking for other files")
-assert os.listdir("files/other_files") == [
+assert set(os.listdir("files/other_files")) == set([
     'emresvd_random-video_.gitignore',
     'emresvd_random-video_db.sqlite3',
     'emresvd_random-video_random_video___pycache___settings.cpython-37.pyc',
@@ -121,11 +124,11 @@ assert os.listdir("files/other_files") == [
     'emresvd_random-video_video___pycache___random_video.cpython-37.pyc',
     'emresvd_random-video_video___pycache___views.cpython-37.pyc',
     'emresvd_random-video_video___pycache_____init__.cpython-37.pyc'
-]
+])
 print("✓ other files found")
 
 print("\nlooking for python files")
-assert os.listdir("files/python_files") == [
+assert set(os.listdir("files/python_files")) == set([
     'emresvd_random-video_manage.py',
     'emresvd_random-video_random_video_asgi.py',
     'emresvd_random-video_random_video_settings.py',
@@ -140,11 +143,11 @@ assert os.listdir("files/python_files") == [
     'emresvd_random-video_video_tests.py',
     'emresvd_random-video_video_views.py',
     'emresvd_random-video_video___init__.py'
-]
+])
 print("✓ python files found")
 
 print("\nlooking for text files")
-assert os.listdir("files/text_files") == [
+assert set(os.listdir("files/text_files")) == set([
     'emresvd_random-video_requirements.txt',
     'emresvd_random-video_special_search_car.txt',
     'emresvd_random-video_special_search_food.txt',
@@ -152,7 +155,7 @@ assert os.listdir("files/text_files") == [
     'emresvd_random-video_special_search_space.txt',
     'emresvd_random-video_special_search_travel.txt',
     'emresvd_random-video_words.txt'
-]
+])
 print("✓ text files found")
 
 print("\n✓ all tests passed")
