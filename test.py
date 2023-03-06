@@ -6,10 +6,7 @@ import shutil
 if os.path.isdir("files"):
     shutil.rmtree("files")
 
-scraping = RepoScraping(
-    "https://github.com/emresvd/random-video",
-    p=True
-)
+scraping = RepoScraping("https://github.com/emresvd/random-video")
 
 print("\ntesting tree_urls")
 assert scraping.tree_urls == [
@@ -80,8 +77,6 @@ cloner.clone(
         ".html": "files/html_files",
         "": "files/other_files",
     },
-    only_file_name=False,
-    p=True,
 )
 
 print("\nlooking for files")
