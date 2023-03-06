@@ -65,7 +65,7 @@ assert scraping.file_urls == [
     'https://github.com/emresvd/random-video/blob/master/video/migrations/__init__.py',
     'https://github.com/emresvd/random-video/blob/master/video/migrations/__pycache__/__init__.cpython-37.pyc'
 ]
-print("✓ file_urls test passed\n")
+print("✓ file_urls test passed")
 
 
 cloner = Cloner(scraping)
