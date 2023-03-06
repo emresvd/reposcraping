@@ -81,6 +81,7 @@ cloner.clone(
 )
 
 print("\nlooking for files")
+print(os.listdir("files"))
 assert os.listdir("files") == [
     'html_files',
     'markdown_files',
